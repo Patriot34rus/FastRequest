@@ -22,11 +22,11 @@ final class SocketClient extends ADriver
      */
     private function __construct($URI)
     {
-        $errno =  $errstr = null;
+        $errno = $errstr = null;
         $this->socket = stream_socket_client($URI, $errno, $errstr);
 
-        if($errno){
-            throw new \Exception("Socket - ".$errstr);
+        if ($errno) {
+            throw new \Exception("Socket - " . $errstr);
         }
     }
 

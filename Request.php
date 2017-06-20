@@ -1,8 +1,8 @@
 <?php
 
+use Request\ADriver;
 use Request\Curl;
 use Request\DataBase;
-use Request\ADriver;
 use Request\SocketClient;
 
 
@@ -32,7 +32,7 @@ final class Request
     public function __construct($URI, $ConnectionType, $ConnectionParams = [])
     {
         try {
-           $this->createConnection($URI, $ConnectionType, $ConnectionParams);
+            $this->createConnection($URI, $ConnectionType, $ConnectionParams);
         } catch (\Exception $ex) {
             throw new \Exception("Request::Can't creat connection - " . $ex->getMessage(), $ex->getCode(), $ex);
         }
@@ -70,7 +70,8 @@ final class Request
      * @param array $ConnectionParams
      * @throws Exception
      */
-    private function createConnection($URI, $ConnectionType, $ConnectionParams = []){
+    private function createConnection($URI, $ConnectionType, $ConnectionParams = [])
+    {
         switch ($ConnectionType) {
             case self::TYPE_CURL:
                 $this->setConnection(new Curl($URI, $ConnectionParams));
