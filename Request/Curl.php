@@ -2,17 +2,17 @@
 
 namespace Request;
 
-class Curl extends ARequest
+final class Curl extends ADriver
 {
     /**
      * Методы передачи данных
      */
     const
-        CURL_METHOD_GET = 'GET',
-        CURL_METHOD_POST = 'POST',
-        CURL_METHOD_PUT = 'PUT',
-        CURL_METHOD_DELETE = 'DELETE',
-        CURL_METHOD_UPDATE = 'UPDATE';
+        METHOD_GET = 'GET',
+        METHOD_POST = 'POST',
+        METHOD_PUT = 'PUT',
+        METHOD_DELETE = 'DELETE',
+        METHOD_UPDATE = 'UPDATE';
 
     /**
      * @var resource
@@ -59,7 +59,7 @@ class Curl extends ARequest
     private function setOption($option, $value)
     {
         if (!curl_setopt($this->connection, $option, $value)) {
-            throw new \Exception(sprintf("Curl connection: can't set option %s with value %s."));
+            throw new \Exception(sprintf("can't set option %s with value %s.", [$option, $value]));
         }
     }
 
@@ -76,7 +76,7 @@ class Curl extends ARequest
      */
     public function setMethod($method)
     {
-        if ($method === self::CURL_METHOD_POST) {
+        if ($method === self::METHOD_POST) {
             $this->setOption(CURLOPT_POST, true);
         } else {
             $this->setOption(CURLOPT_CUSTOMREQUEST, $method);
@@ -93,7 +93,7 @@ class Curl extends ARequest
     }
 
     /**
-     * Закрываем соединеие
+     * @inheritdoc
      */
     public function close()
     {

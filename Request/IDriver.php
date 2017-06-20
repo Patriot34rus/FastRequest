@@ -30,4 +30,10 @@ interface IDriver
      * @return mixed
      */
     public function setMethod($method);
+
+    /**
+     * Закрываем соединеие
+     * @return void
+     */
+    public function close();
 }

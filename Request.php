@@ -2,7 +2,7 @@
 
 use Request\Curl;
 use Request\DataBase;
-use Request\IDriver;
+use Request\ADriver;
 use Request\SocketClient;
 
 
@@ -18,7 +18,7 @@ final class Request
 
     /**
      * Объект выбраного типа соединения
-     * @var IDriver
+     * @var ADriver
      */
     private $connection;
 
@@ -91,9 +91,9 @@ final class Request
 
     /**
      * Установить объект текущего соединения
-     * @param IDriver $connect
+     * @param ADriver $connect
      */
-    private function setConnection(IDriver $connect)
+    private function setConnection(ADriver $connect)
     {
         $this->connection = $connect;
     }

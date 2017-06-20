@@ -2,7 +2,7 @@
 
 namespace Request;
 
-abstract class ARequest implements IDriver
+abstract class ADriver implements IDriver
 {
     /**
      * @var mixed $response результат запроса
@@ -16,7 +16,7 @@ abstract class ARequest implements IDriver
      */
     public function response()
     {
-        $this->response();
+        return $this->response;
     }
 
     /**
@@ -34,4 +34,6 @@ abstract class ARequest implements IDriver
     {
         $this->comand = $comand;
     }
+
+
 }

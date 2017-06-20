@@ -2,7 +2,7 @@
 
 namespace Request;
 
-class SocketClient extends ARequest
+final class SocketClient extends ADriver
 {
     /**
      * Singleton
@@ -11,10 +11,10 @@ class SocketClient extends ARequest
     private static $instance;
 
     /**
-     * @var bool|resource
-     * @var int $buffer
+     * @var bool|resource объект текущего соединения
+     * @var int $buffer ограничения считывания из соедиения (в байтах)
      */
-    private $socket, $buffer = 4096;
+    private $socket, $bufferByteLimit = 4096;
 
     /**
      * SocketClient constructor.
@@ -26,7 +26,7 @@ class SocketClient extends ARequest
         $this->socket = stream_socket_client($URI, $errno, $errstr);
 
         if($errno){
-            throw new \Exception("Error Request. Socket - ".$errstr);
+            throw new \Exception("Socket - ".$errstr);
         }
     }
 
@@ -51,7 +51,7 @@ class SocketClient extends ARequest
     public function exec()
     {
         fwrite($this->socket, $this->formatedComand());
-        $this->response = fread($this->socket, $this->buffer);
+        $this->response = fread($this->socket, $this->bufferByteLimit);
     }
 
     /**
