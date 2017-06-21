@@ -9,6 +9,6 @@
 По необходимости может быть расширен  работой с файлом, soap и т.д. 
 
 ```
-$socket = new Request('tcp::localhost:3030', Request::TYPE_SOCKET); 
+$socket = new Request('tcp://localhost:3030', Request::TYPE_SOCKET); 
 $socket -> send(['user' => ..., 'password' => ...],'auth');
 ```
